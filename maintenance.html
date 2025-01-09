@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>الصيانة - ModernSat Electronics</title>
+        <script src="https://cdn.tailwindcss.com">
+    </script>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            rel="stylesheet" />
+        <link rel="icon" href="img/Logo.png" type="image/png">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="bg-gray-100 font-sans">
+        <!-- Header -->
+        <header class="bg-white shadow-md relative">
+            <div
+                class="container mx-auto flex justify-between items-center py-4 px-6 header-container">
+                <div class="flex items-center space-x-4">
+                    <a class="text-gray-600" href="#">
+                        <i class="fas fa-phone-alt"></i>
+                        +20 102 807 3345
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a class="text-gray-600" href="https://www.facebook.com/MOdernsat12/">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="cart.html" class="text-gray-600 hover:text-gray-900 relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                            style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- Navigation -->
+        <nav class="bg-white shadow-md relative old-nav">
+            <div
+                class="container mx-auto flex justify-between items-center py-4 px-6">
+                <div class="desktop-menu flex items-center space-x-4">
+                    <a class="text-gray-800 font-bold text-xl"
+                        href="index.html">ModernSat</a>
+                    <a class="text-gray-600 hover:text-red-500"
+                        href="index.html">الرئيسية</a>
+                    <a class="text-gray-600 hover:text-red-500"
+                        href="products.html">المنتجات</a>
+                    <a class="text-gray-600 hover:text-red-500 active"
+                        href="maintenance.html">الصيانة</a>
+                    <a class="text-gray-600 hover:text-red-500"
+                        href="payment.html">معلومات الدفع</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Navigation للموبايل -->
+        <nav class="bg-white shadow-md relative mobile-menu">
+            <div class="container mx-auto py-4 px-6">
+                <div class="flex items-center justify-between w-full">
+                    <a class="text-gray-800 font-bold text-xl" href="index.html">ModernSat</a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900 p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="mobile-menu-items">
+                    <a class="text-gray-600 hover:text-red-500" href="index.html">الرئيسية</a>
+                    <a class="text-gray-600 hover:text-red-500" href="products.html">المنتجات</a>
+                    <a class="text-gray-600 hover:text-red-500 active" href="maintenance.html">الصيانة</a>
+                    <a class="text-gray-600 hover:text-red-500" href="payment.html">معلومات الدفع</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- قسم أسعار الصيانة -->
+        <section class="maintenance-prices">
+            <div class="container">
+                <h1>خدمات الصيانة و تركيب الرسيفر و أسعارهما</h1>
+
+                <div class="price-cards">
+                    <div class="price-card">
+                        <h3>التركيب الأساسي</h3>
+                        <div class="price">150 ج.م</div>
+                        <ul>
+                            <li>تركيب طبق جديد</li>
+                            <li>تركيب شاشة جديدة</li>
+                        </ul>
+                        <button onclick="addMaintenanceToCart('basic-installation')" 
+                                class="add-to-cart-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors w-full mt-4">
+                            أضف إلى السلة
+                        </button>
+                    </div>
+
+                    <div class="price-card">
+                        <h3>الصيانة لأساسية</h3>
+                        <div class="price">80 ج.م</div>
+                        <ul>
+                            <li>فحص الرسيفر</li>
+                            <li>ضبط الطبق</li>
+                        </ul>
+                        <button onclick="addMaintenanceToCart('basic-maintenance')" 
+                                class="add-to-cart-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors w-full mt-4">
+                            أضف إلى السلة
+                        </button>
+                    </div>
+
+                    <div class="price-card">
+                        <h3>خدمات خاصة</h3>
+                        <div class="price">200 ج.م</div>
+                        <ul>
+                            <li>تركيب أنظمة متعددة</li>
+                            <li>صيانة أجهزة متخصصة</li>
+                        </ul>
+                        <button onclick="addMaintenanceToCart('special-services')" 
+                                class="add-to-cart-btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors w-full mt-4">
+                            أضف إلى السلة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إضافة التنبيهات -->
+            <div class="toast-notification hidden">
+                <i class="fas fa-check-circle"></i>
+                <span></span>
+            </div>
+        </section>
+
+        <style>
+            .maintenance-prices {
+                padding: 4rem 0;
+                background-color: #f9fafb;
+            }
+
+            .maintenance-prices .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+
+            .maintenance-prices h1 {
+                text-align: center;
+                font-size: 2rem;
+                font-weight: bold;
+                margin-bottom: 3rem;
+                color: #1f2937;
+            }
+
+            .price-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                padding: 1rem;
+            }
+
+            .price-card {
+                background: white;
+                border-radius: 0.5rem;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+
+            .price-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .price-card h3 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #1f2937;
+                margin-bottom: 1rem;
+            }
+
+            .price-card .price {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #ef4444;
+                margin-bottom: 1.5rem;
+            }
+
+            .price-card ul {
+                list-style: none;
+                padding: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .price-card ul li {
+                padding: 0.5rem 0;
+                color: #4b5563;
+            }
+
+            .toast-notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10B981;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                z-index: 1000;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: all 0.3s ease;
+                direction: rtl;
+            }
+
+            .toast-notification.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .toast-notification i {
+                margin-left: 8px;
+            }
+
+            .toast-notification.success {
+                background: #10B981;
+                border-left: 5px solid #059669;
+            }
+
+            .cart-count {
+                position: absolute !important;
+                top: -8px !important;
+                right: -8px !important;
+                background: #EF4444;
+                color: white;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                z-index: 10;
+            }
+
+            .relative {
+                position: relative;
+            }
+
+            .gap-4 {
+                gap: 1rem;
+            }
+
+            header .container {
+                direction: ltr;
+            }
+
+            header .flex.items-center.gap-4 {
+                direction: ltr;
+            }
+
+            header a {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            header a i {
+                font-size: 1.2rem;
+            }
+
+            header a[href="#"] i {
+                margin-right: 0.5rem;
+            }
+        </style>
+
+        <script>
+            // تعريف دالة toggleMobileMenu في النطاق العالمي
+            window.toggleMobileMenu = function() {
+                const mobileMenu = document.querySelector('.mobile-menu-items');
+                mobileMenu.classList.toggle('show');
+            };
+            
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(event) {
+                const mobileMenu = document.querySelector('.mobile-menu-items');
+                const menuButton = document.querySelector('.mobile-menu button');
+                
+                if (!event.target.closest('.mobile-menu') && mobileMenu.classList.contains('show')) {
+                    mobileMenu.classList.remove('show');
+                }
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // تهيئة السلة
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                updateCartCount();
+
+                // خدمات الصيانة
+                const maintenanceServices = {
+                    'basic-installation': {
+                        id: 'installation-1',
+                        name: 'التركيب الأساسي',
+                        price: 150,
+                        description: 'تركيب طبق جديد وتركيب شاشة جديدة',
+                        type: 'maintenance'
+                    },
+                    'basic-maintenance': {
+                        id: 'maintenance-1',
+                        name: 'الصيانة الأساسية',
+                        price: 80,
+                        description: 'فحص الرسيفر وضبط الطبق',
+                        type: 'maintenance'
+                    },
+                    'special-services': {
+                        id: 'special-1',
+                        name: 'خدمات خاصة',
+                        price: 200,
+                        description: 'تركيب أنظمة متعددة وصيانة أجهزة متخصصة',
+                        type: 'maintenance'
+                    }
+                };
+
+                // دالة إضافة خدمة الصيانة إلى السلة
+                window.addMaintenanceToCart = function(serviceType) {
+                    const service = maintenanceServices[serviceType];
+                    if (service) {
+                        cart.push({
+                            ...service,
+                            quantity: 1,
+                            addedAt: new Date().toISOString()
+                        });
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCartCount();
+                        showToast('تم إضافة الخدمة إلى السلة بنجاح');
+                    }
+                }
+
+                // تحديث عدد العناصر في السلة
+                function updateCartCount() {
+                    const cartCount = document.querySelector('.cart-count');
+                    if (cartCount) {
+                        cartCount.textContent = cart.length;
+                        cartCount.style.display = cart.length > 0 ? 'flex' : 'none';
+                    }
+                }
+
+                // دالة عرض التنبيهات
+                window.showToast = function(message, type = 'success') {
+                    const existingToast = document.querySelector('.toast-notification');
+                    if (existingToast) {
+                        existingToast.remove();
+                    }
+
+                    const toast = document.createElement('div');
+                    toast.className = `toast-notification ${type}`;
+                    toast.innerHTML = `
+                        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                        <span>${message}</span>
+                    `;
+
+                    document.body.appendChild(toast);
+
+                    setTimeout(() => {
+                        toast.classList.add('show');
+                    }, 100);
+
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                        setTimeout(() => {
+                            toast.remove();
+                        }, 300);
+                    }, 3000);
+                }
+            });
+        </script>
+    </body>
+</html>

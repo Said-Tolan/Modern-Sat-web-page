@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>لوحة التحكم - ModernSat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="img/Logo.png" type="image/png">
+    <style>
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10B981;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            direction: rtl;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast-notification i {
+            font-size: 20px;
+        }
+
+        .toast-notification.success {
+            background: #10B981;
+            border-right: 5px solid #059669;
+        }
+
+        .toast-notification.error {
+            background: #EF4444;
+            border-right: 5px solid #DC2626;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg">
+            <div class="p-4 flex justify-between items-center">
+                <h1 class="text-xl font-bold">ModernSat</h1>
+                <button onclick="logout()" class="text-red-500 hover:text-red-700">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <nav class="mt-4">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 active" onclick="showSection('receivers')">
+                    <i class="fas fa-satellite-dish ml-2"></i>
+                    أفضل الريسيفرات
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="showSection('services')">
+                    <i class="fas fa-wifi ml-2"></i>
+                    خدمات الإنترنت
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="showSection('categories')">
+                    <i class="fas fa-th-list ml-2"></i>
+                    الفئات
+                </a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100" onclick="showSection('products')">
+                    <i class="fas fa-box ml-2"></i>
+                    المنتجات
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <!-- قسم الريسيفرات -->
+            <div id="receivers-section" class="section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">إدارة الريسيفرات</h2>
+                    <button onclick="showAddForm('receiver')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <i class="fas fa-plus ml-2"></i>
+                        إضافة ريسيفر جديد
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div id="receivers-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- سيتم إضافة الريسيفرات هنا -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم خدمات الإنترنت -->
+            <div id="services-section" class="section hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">إدارة خدمات الإنترنت</h2>
+                    <button onclick="showAddForm('service')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <i class="fas fa-plus ml-2"></i>
+                        إضافة خدمة جديدة
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div id="services-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- سيتم إضافة الخدمات هنا -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم الفئات -->
+            <div id="categories-section" class="section hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">إدارة الفئات</h2>
+                    <button onclick="showAddForm('category')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <i class="fas fa-plus ml-2"></i>
+                        إضافة فئة جديدة
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div id="categories-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- سيتم إضافة الفئات هنا -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم المنتجات -->
+            <div id="products-section" class="section hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">إدارة المنتجات</h2>
+                    <button onclick="showAddForm('product')" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <i class="fas fa-plus ml-2"></i>
+                        إضافة منتج جديد
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div id="products-list" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- سيتم إضافة المنتجات هنا -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تعديل نموذج الإضافة -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <h3 id="modal-title" class="text-xl font-bold mb-4">إضافة جديدة</h3>
+            <form id="item-form" class="space-y-4">
+                <div>
+                    <label class="block mb-1">الاسم</label>
+                    <input type="text" id="item-name" class="w-full border rounded p-2" required>
+                </div>
+                
+                <!-- حقول خاصة بالمنتج والريسيفر والخدمة -->
+                <div id="description-fields" class="hidden">
+                    <div>
+                        <label class="block mb-1">الوصف</label>
+                        <textarea id="item-description" class="w-full border rounded p-2" rows="3"></textarea>
+                    </div>
+                    <div>
+                        <label class="block mb-1">السعر</label>
+                        <input type="number" id="item-price" class="w-full border rounded p-2">
+                    </div>
+                    <div>
+                        <label class="block mb-1">الصورة</label>
+                        <input type="file" id="item-image" class="w-full border rounded p-2" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-2">
+                    <button type="button" onclick="closeModal()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        حفظ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // دالة عرض الإشعارات
+            window.showToast = function(message, type = 'success') {
+                // إزالة أي إشعارات سابقة
+                const existingToast = document.querySelector('.toast-notification');
+                if (existingToast) {
+                    existingToast.remove();
+                }
+
+                // إنشاء عنصر الإشعار
+                const toast = document.createElement('div');
+                toast.className = `toast-notification ${type}`;
+                toast.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                `;
+
+                // إضافة الإشعار للصفحة
+                document.body.appendChild(toast);
+
+                // إظهار الإشعار
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 100);
+
+                // إخفاء الإشعار بعد 3 ثواني
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            // تهيئة البيانات
+            let categories = JSON.parse(localStorage.getItem('categories')) || [];
+            let products = JSON.parse(localStorage.getItem('products')) || {
+                receivers: [],
+                services: [],
+                items: []
+            };
+
+            // عرض القسم المحدد
+            window.showSection = function(section) {
+                document.querySelectorAll('.section').forEach(el => el.classList.add('hidden'));
+                document.getElementById(`${section}-section`).classList.remove('hidden');
+                
+                document.querySelectorAll('nav a').forEach(el => el.classList.remove('bg-gray-100'));
+                event.currentTarget.classList.add('bg-gray-100');
+                
+                switch(section) {
+                    case 'receivers':
+                        renderReceivers();
+                        break;
+                    case 'services':
+                        renderServices();
+                        break;
+                    case 'categories':
+                        renderCategories();
+                        break;
+                    case 'products':
+                        renderProducts();
+                        break;
+                }
+            }
+
+            // عرض نموذج الإضافة
+            window.showAddForm = function(type) {
+                document.getElementById('modal').classList.remove('hidden');
+                const title = type === 'receiver' ? 'إضافة ريسيفر جديد' : 
+                             type === 'service' ? 'إضافة خدمة جديدة' : 
+                             type === 'category' ? 'إضافة فئة جديدة' : 'إضافة منتج جديد';
+                
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('item-form').dataset.type = type;
+                
+                // إظهار/إخفاء الحقول المناسبة
+                const descriptionFields = document.getElementById('description-fields');
+                
+                // إزالة حقل الفئة السابق إذا كان موجوداً
+                const existingCategoryField = document.getElementById('category-field');
+                if (existingCategoryField) {
+                    existingCategoryField.remove();
+                }
+
+                if (type === 'category') {
+                    descriptionFields.style.display = 'none';
+                } else {
+                    descriptionFields.style.display = 'block';
+                    
+                    // إضافة حقل اختيار الفئة للمنتجات
+                    if (type === 'product') {
+                        const categorySelect = `
+                            <div id="category-field">
+                                <label class="block mb-1">الفئة</label>
+                                <select id="item-category" class="w-full border rounded p-2" required>
+                                    <option value="">اختر الفئة</option>
+                                    ${categories.map(cat => `
+                                        <option value="${cat.id}">${cat.name}</option>
+                                    `).join('')}
+                                </select>
+                            </div>
+                        `;
+                        descriptionFields.insertAdjacentHTML('afterbegin', categorySelect);
+                    }
+                }
+            }
+
+            // إغلاق النموذج
+            window.closeModal = function() {
+                document.getElementById('modal').classList.add('hidden');
+                document.getElementById('item-form').reset();
+                const categoryField = document.getElementById('category-field');
+                if (categoryField) {
+                    categoryField.remove();
+                }
+            }
+
+            // تحويل الصورة إلى Base64
+            async function convertImageToBase64(file) {
+                return new Promise((resolve, reject) => {
+                    if (!file) {
+                        resolve('');
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // عرض الفئات
+            function renderCategories() {
+                const container = document.getElementById('categories-list');
+                container.innerHTML = categories.map(category => `
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="font-bold text-lg">${category.name}</h3>
+                        <div class="mt-4 flex justify-end space-x-2">
+                            <button onclick="editCategory(${category.id})" class="bg-yellow-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteCategory(${category.id})" class="bg-red-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // حرض المنتجات
+            function renderProducts() {
+                const container = document.getElementById('products-list');
+                container.innerHTML = products.items.map(product => `
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <img src="${product.image || 'https://via.placeholder.com/300'}" 
+                             alt="${product.name}" 
+                             class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="font-bold text-lg">${product.name}</h3>
+                        <p class="text-gray-600">${product.description}</p>
+                        <p class="text-gray-500 mt-1">الفئة: ${getCategoryName(product.categoryId)}</p>
+                        <p class="text-red-500 font-bold mt-2">${product.price} ج.م</p>
+                        <div class="mt-4 flex justify-end space-x-2">
+                            <button onclick="editProduct(${product.id})" class="bg-yellow-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteProduct(${product.id})" class="bg-red-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // الحصول على اسم الفئة
+            window.getCategoryName = function(categoryId) {
+                const category = categories.find(c => c.id === parseInt(categoryId));
+                return category ? category.name : 'غير محدد';
+            }
+
+            // حفظ العنصر (فئة أو منتج)
+            document.getElementById('item-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                try {
+                    const type = this.dataset.type;
+                    const nameInput = document.getElementById('item-name');
+                    
+                    if (!nameInput.value.trim()) {
+                        showToast('الرجاء إدخال الاسم', 'error');
+                        return;
+                    }
+
+                    const item = {
+                        id: Date.now(),
+                        name: nameInput.value.trim()
+                    };
+
+                    if (type !== 'category') {
+                        const descInput = document.getElementById('item-description');
+                        const priceInput = document.getElementById('item-price');
+                        const imageInput = document.getElementById('item-image');
+
+                        // التحقق من الحقول المطلوبة للمنتجات
+                        if (!descInput.value.trim()) {
+                            showToast('الرجاء إدخال الوصف', 'error');
+                            return;
+                        }
+                        
+                        if (!priceInput.value || priceInput.value <= 0) {
+                            showToast('الرجاء إدخال سعر صحيح', 'error');
+                            return;
+                        }
+
+                        item.description = descInput.value.trim();
+                        item.price = priceInput.value;
+
+                        // التعامل مع الصورة
+                        if (imageInput.files && imageInput.files[0]) {
+                            item.image = await convertImageToBase64(imageInput.files[0]);
+                        } else {
+                            item.image = ''; // أو يمكنك وضع صورة افتراضية هنا
+                        }
+
+                        if (type === 'product') {
+                            const categorySelect = document.getElementById('item-category');
+                            if (!categorySelect.value) {
+                                showToast('الرجاء اختيار الفئة', 'error');
+                                return;
+                            }
+                            item.categoryId = parseInt(categorySelect.value);
+                        }
+                    }
+
+                    switch(type) {
+                        case 'receiver':
+                            products.receivers.push(item);
+                            renderReceivers();
+                            break;
+                        case 'service':
+                            products.services.push(item);
+                            renderServices();
+                            break;
+                        case 'product':
+                            products.items.push(item);
+                            renderProducts();
+                            break;
+                        case 'category':
+                            categories.push(item);
+                            renderCategories();
+                            showSection('categories');
+                            break;
+                    }
+                    
+                    localStorage.setItem('products', JSON.stringify(products));
+                    localStorage.setItem('categories', JSON.stringify(categories));
+                    
+                    closeModal();
+                    showToast('تم الحفظ بنجاح');
+
+                } catch (error) {
+                    console.error('Error saving item:', error);
+                    showToast('حدث خطأ أثناء الحفظ', 'error');
+                }
+            });
+
+            // حذف فئة
+            window.deleteCategory = function(id) {
+                if (confirm('هل أنت متأكد من حذف هذه الفئة؟')) {
+                    categories = categories.filter(item => item.id !== id);
+                    localStorage.setItem('categories', JSON.stringify(categories));
+                    renderCategories();
+                    showToast('تم حذف الفئة بنجاح');
+                }
+            }
+
+            // حذف منتج
+            window.deleteProduct = function(id) {
+                if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+                    products.items = products.items.filter(item => item.id !== id);
+                    localStorage.setItem('products', JSON.stringify(products));
+                    renderProducts();
+                    showToast('تم حذف المنتج بنجاح');
+                }
+            }
+
+            // عرض الريسيفرات
+            function renderReceivers() {
+                const container = document.getElementById('receivers-list');
+                container.innerHTML = products.receivers.map(receiver => `
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <img src="${receiver.image || 'https://via.placeholder.com/300'}" 
+                             alt="${receiver.name}" 
+                             class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="font-bold text-lg">${receiver.name}</h3>
+                        <p class="text-gray-600">${receiver.description}</p>
+                        <p class="text-red-500 font-bold mt-2">${receiver.price} ج.م</p>
+                        <div class="mt-4 flex justify-end space-x-2">
+                            <button onclick="editReceiver(${receiver.id})" class="bg-yellow-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteReceiver(${receiver.id})" class="bg-red-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // عرض خدمات الإنترنت
+            function renderServices() {
+                const container = document.getElementById('services-list');
+                container.innerHTML = products.services.map(service => `
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <img src="${service.image || 'https://via.placeholder.com/300'}" 
+                             alt="${service.name}" 
+                             class="w-full h-48 object-cover rounded mb-4">
+                        <h3 class="font-bold text-lg">${service.name}</h3>
+                        <p class="text-gray-600">${service.description}</p>
+                        <p class="text-red-500 font-bold mt-2">${service.price} ج.م</p>
+                        <div class="mt-4 flex justify-end space-x-2">
+                            <button onclick="editService(${service.id})" class="bg-yellow-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="deleteService(${service.id})" class="bg-red-500 text-white px-3 py-1 rounded">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // إضافة دوال جديدة للريسيفرات والخدمات
+            window.deleteReceiver = function(id) {
+                if (confirm('هل أنت متأكد من حذف هذا الريسيفر؟')) {
+                    products.receivers = products.receivers.filter(item => item.id !== id);
+                    localStorage.setItem('products', JSON.stringify(products));
+                    renderReceivers();
+                    showToast('تم حذف الريسيفر بنجاح');
+                }
+            }
+
+            window.deleteService = function(id) {
+                if (confirm('هل أنت متأكد من حذف هذه الخدمة؟')) {
+                    products.services = products.services.filter(item => item.id !== id);
+                    localStorage.setItem('products', JSON.stringify(products));
+                    renderServices();
+                    showToast('تم حذف الخدمة بنجاح');
+                }
+            }
+
+            // تحميل البيانات عند فتح الصفحة
+            renderReceivers();
+        });
+
+        // التحقق من تسجيل الدخول
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // تسجيل الخروج
+        window.logout = function() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('isLoggedIn');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // التحقق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            
+            // إظهار قسم الريسيفرات فقط عند فتح الصفحة
+            showSection('receivers');
+            
+            // تحميل البيانات
+            renderReceivers();
+        });
+    </script>
+</body>
+</html> 

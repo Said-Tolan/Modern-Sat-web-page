@@ -1,0 +1,135 @@
+.maintenance-prices {
+    padding: 50px 0;
+}
+
+.maintenance-prices h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.price-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
+}
+
+.price-card h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.price-card .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2196F3;
+    margin: 20px 0;
+}
+
+.price-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.price-card ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.price-card ul li:last-child {
+    border-bottom: none;
+}
+
+/* تحسين التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .price-cards {
+        grid-template-columns: 1fr;
+    }
+} 
+
+/* تنسيقات القائمة المنسدلة للموبايل */
+.mobile-menu {
+    display: none;
+}
+
+/* إخفاء الناف القديم في الشاشات الصغيرة */
+@media (max-width: 820px) {
+    .old-nav {
+        display: none;
+    }
+}
+
+@media (max-width: 820px) {
+    .desktop-menu {
+        display: none;
+    }
+    
+    .mobile-menu {
+        display: block;
+        width: 100%;
+    }
+    
+    /* تعديل الهيدر للشاشات الصغيرة */
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .mobile-menu-items {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: white;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+    }
+    
+    .mobile-menu-items.show {
+        display: block;
+    }
+    
+    .mobile-menu-items a {
+        display: block;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #eee;
+        text-align: right;
+    }
+    
+    .mobile-menu-items a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* تعديلات إضافية للشاشات الصغيرة جداً */
+@media (max-width: 375px) {
+    .header-container {
+        padding: 0.5rem;
+    }
+    
+    .mobile-menu-items {
+        padding: 0.5rem;
+    }
+    
+    .mobile-menu-items a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+} 

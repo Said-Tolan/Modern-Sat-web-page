@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="style.css">
+
+<nav class="bg-white shadow-md relative old-nav">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="desktop-menu flex items-center space-x-4">
+            <!-- القائمة الحالية -->
+        </div>
+    </div>
+</nav>
+
+<!-- Navigation للموبايل -->
+<nav class="bg-white shadow-md relative mobile-menu">
+    <div class="container mx-auto py-4 px-6">
+        <div class="flex items-center justify-between w-full">
+            <a class="text-gray-800 font-bold text-xl" href="index.html">ModernSat</a>
+            <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900 p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-menu-items">
+            <a class="text-gray-600 hover:text-red-500" href="index.html">الرئيسية</a>
+            <a class="text-gray-600 hover:text-red-500" href="products.html">المنتجات</a>
+            <a class="text-gray-600 hover:text-red-500" href="maintenance.html">الصيانة</a>
+            <a class="text-gray-600 hover:text-red-500" href="payment.html">معلومات الدفع</a>
+        </div>
+    </div>
+</nav>
+
+<!-- إضافة JavaScript -->
+<script>
+    function toggleMobileMenu() {
+        const mobileMenu = document.querySelector('.mobile-menu-items');
+        mobileMenu.classList.toggle('show');
+    }
+
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', function(event) {
+        const mobileMenu = document.querySelector('.mobile-menu-items');
+        const menuButton = document.querySelector('.mobile-menu button');
+        
+        if (!event.target.closest('.mobile-menu') && mobileMenu.classList.contains('show')) {
+            mobileMenu.classList.remove('show');
+        }
+    });
+</script> 

@@ -1,0 +1,465 @@
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>
+            ModernSat Electronics
+        </title>
+        <script src="https://cdn.tailwindcss.com">
+    </script>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            rel="stylesheet" />
+        <link rel="icon" href="img/Logo.png" type="image/png">
+        <style>
+            /* تنسيقات القائمة المنسدلة للموبايل */
+            .mobile-menu {
+                display: none;
+            }
+            
+            /* إخفاء الناف القديم في الشاشات الصغيرة */
+            @media (max-width: 820px) {
+                .old-nav {
+                    display: none;
+                }
+            }
+            
+            @media (max-width: 820px) {
+                .desktop-menu {
+                    display: none;
+                }
+                
+                .mobile-menu {
+                    display: block;
+                    width: 100%;
+                }
+                
+                /* تعديل الهيدر للشاشات الصغيرة */
+                .header-container {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+                
+                .mobile-menu-items {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    left: 0;
+                    background: white;
+                    padding: 1rem;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    z-index: 50;
+                }
+                
+                .mobile-menu-items.show {
+                    display: block;
+                }
+                
+                .mobile-menu-items a {
+                    display: block;
+                    padding: 0.75rem 1rem;
+                    border-bottom: 1px solid #eee;
+                    text-align: right;
+                }
+                
+                .mobile-menu-items a:last-child {
+                    border-bottom: none;
+                }
+
+                /* تعديلات إضافية للشاشات الصغيرة جداً */
+                @media (max-width: 375px) {
+                    .header-container {
+                        padding: 0.5rem;
+                    }
+                    
+                    .mobile-menu-items {
+                        padding: 0.5rem;
+                    }
+                    
+                    .mobile-menu-items a {
+                        padding: 0.5rem;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-100 font-sans">
+        <!-- Header -->
+        <header class="bg-white shadow-md relative">
+            <div
+                class="container mx-auto flex justify-between items-center py-4 px-6 header-container">
+                <div class="flex items-center space-x-4">
+                    <a class="text-gray-600" href="#">
+                        <i class="fas fa-phone-alt">
+                        </i>
+                        +20 102 807 3345
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a class="text-gray-600"
+                        href="https://www.facebook.com/MOdernsat12/">
+                        <i class="fab fa-facebook-f">
+                        </i>
+                    </a>
+                    <a href="cart.html"
+                        class="text-gray-600 hover:text-gray-900 relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span
+                            class="cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                            style="display: none;">0</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- Navigation -->
+        <nav class="bg-white shadow-md relative old-nav">
+            <div
+                class="container mx-auto flex justify-between items-center py-4 px-6">
+                <!-- القائمة للشاشات الكبيرة -->
+                <div class="desktop-menu flex items-center space-x-4">
+                    <a class="text-gray-800 font-bold text-xl"
+                        href="index.html">ModernSat</a>
+                    <a class="text-gray-600 hover:text-red-500 active"
+                        href="index.html">الرئيسية</a>
+                    <a class="text-gray-600 hover:text-red-500"
+                        href="products.html">المنتجات</a>
+                    <a class="text-gray-600 hover:text-red-500"
+                        href="maintenance.html">الصيانة</a>
+                    <a class="text-gray-600 hover:text-red-500"
+                        href="payment.html">معلومات الدفع</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation للموبايل -->
+        <nav class="bg-white shadow-md relative mobile-menu">
+            <div class="container mx-auto py-4 px-6">
+                <div class="flex items-center justify-between w-full">
+                    <a class="text-gray-800 font-bold text-xl" href="index.html">ModernSat</a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900 p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="mobile-menu-items">
+                    <a class="text-gray-600 hover:text-red-500 active" href="index.html">الرئيسية</a>
+                    <a class="text-gray-600 hover:text-red-500" href="products.html">المنتجات</a>
+                    <a class="text-gray-600 hover:text-red-500" href="maintenance.html">الصيانة</a>
+                    <a class="text-gray-600 hover:text-red-500" href="payment.html">معلومات الدفع</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Main Banner -->
+        <section class="bg-white py-8">
+            <div
+                class="container mx-auto flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl font-bold text-gray-800">
+                        ModernSat
+                    </h1>
+                    <h2 class="text-1xl text-gray-600">
+                        نحن مودرن سات لي الخدمات الألكترونيه ونقدم لك افضل
+                        الأسعار
+                    </h2>
+                    <button
+                        class="mt-4 bg-red-500 text-white py-2 px-4 rounded">
+                        <a href="products.html">تسوق الان</a>
+                    </button>
+                </div>
+                <div class="md:w-1/2">
+                    <img alt="Satellite Accessories" height="400"
+                        src="https://storage.googleapis.com/a1aa/image/elk6c2pfrzpRDkvuTWpPbkErbf66HEhGiJeQlkUjVZxy8NLQB.jpg"
+                        width="600" />
+                </div>
+            </div>
+        </section>
+        <!-- Our Bestsellers -->
+        <section class="bg-white py-8">
+            <div class="container mx-auto">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">أفضل الرسيفرات</h2>
+                <div id="receivers-container" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- سيتم إضافة المنتجات ديناميكياً هنا -->
+                </div>
+            </div>
+        </section>
+        <!-- خدمات انترنت -->
+        <section class="bg-gray-100 py-8">
+            <div class="container mx-auto">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">خدمات انترنت</h2>
+                <div id="services-container" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- سيتم إضافة الخدمات ديناميكياً هنا -->
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-white py-8">
+            <div class="container mx-auto text-center">
+                <p class="text-gray-600">
+                    © 2023 ModernSat Electronics. All rights reserved.
+                </p>
+            </div>
+        </footer>
+        <script>
+        // Add your JavaScript here
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('JavaScript is loaded and ready to go!');
+        });
+    </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // تهيئة السلة
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // تحديث عدد العناصر في السلة
+            function updateCartCount() {
+                const cartIcon = document.querySelector('.fa-shopping-cart');
+                if (!cartIcon) return;
+
+                let badge = cartIcon.querySelector('.cart-badge');
+                const cartCount = cart.length;
+
+                if (cartCount === 0 && badge) {
+                    badge.remove();
+                    return;
+                }
+
+                if (!badge && cartCount > 0) {
+                    badge = document.createElement('span');
+                    badge.className = 'cart-badge absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs';
+                    cartIcon.style.position = 'relative';
+                    cartIcon.appendChild(badge);
+                }
+
+                if (badge) {
+                    badge.textContent = cartCount;
+                    // إضافة تأثير عند التحديث
+                    badge.style.animation = 'none';
+                    badge.offsetHeight; // trigger reflow
+                    badge.style.animation = 'pulse 0.3s ease';
+                }
+            }
+            // إضافة إلى السلة
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function () {
+                    const productDiv = this.closest('div');
+                    const product = {
+                        id: Date.now(),
+                        name: productDiv.querySelector('h3').textContent,
+                        description: productDiv.querySelector('.text-gray-600').textContent,
+                        price: productDiv.querySelector('.text-red-500').textContent,
+                        image: productDiv.querySelector('img').src
+                    };
+
+                    // إضافة المنتج إلى السلة
+                    cart.push(product);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+
+                    // تحديث العداد
+                    updateCartCount();
+
+                    // عرض رسالة نجاح
+                    showNotification(`تم إضافة ${product.name} إلى السلة`);
+                });
+            });
+
+            // عرض رسالة نجاح
+            function showNotification(message) {
+                // إزالة الإشعارات السابقة
+                const oldNotifications = document.querySelectorAll('.notification');
+                oldNotifications.forEach(notification => notification.remove());
+
+                const notification = document.createElement('div');
+                notification.className = 'notification fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50 rtl';
+                notification.textContent = message;
+
+                // إضافة أيقونة النجاح
+                notification.innerHTML = `
+        <div class="flex items-center">
+            <i class="fas fa-check-circle ml-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
+
+                document.body.appendChild(notification);
+
+                // تحريك الإشعار
+                notification.style.animation = 'slideIn 0.3s ease';
+
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }
+            // عرض السلة عند النقر على الأيقونة
+            document.querySelector('.fa-shopping-cart').addEventListener('click', function () {
+                showCart();
+            });
+
+            // حذف منتج من السلة
+            window.removeFromCart = function (id) {
+                cart = cart.filter(item => item.id !== id);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showCart(); // تحديث عرض السلة
+                showNotification('تم حذف المنتج من السلة');
+            };
+
+            // تحديث عداد السلة عند تحميل الصفحة
+            updateCartCount();
+        });
+    </script>
+
+        <style>
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .notification {
+            direction: rtl;
+        }
+
+        .rtl {
+            direction: rtl;
+        }
+    </style>
+    <script>
+        // عرض المنتجات في الصفحة الرئيسية
+        document.addEventListener('DOMContentLoaded', function() {
+            const products = JSON.parse(localStorage.getItem('products')) || { receivers: [], services: [] };
+            
+            // عرض الريسيفرات
+            const receiversContainer = document.getElementById('receivers-container');
+            receiversContainer.innerHTML = products.receivers.map(product => `
+                <div class="bg-gray-100 p-4 rounded hover:shadow-lg transition-all">
+                    <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}" class="w-full h-40 object-cover rounded">
+                    <h3 class="text-lg font-bold mt-2">${product.name}</h3>
+                    <p class="text-gray-600 text-sm">${product.description}</p>
+                    <p class="text-red-500 font-bold mt-2">${product.price} ج.م</p>
+                    <button onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})" 
+                            class="add-to-cart mt-3 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors w-full">
+                        أضف إلى السلة
+                    </button>
+                </div>
+            `).join('');
+
+            // عرض خدمات الإنترنت
+            const servicesContainer = document.getElementById('services-container');
+            servicesContainer.innerHTML = products.services.map(service => `
+                <div class="bg-gray-100 p-4 rounded">
+                    <img src="${service.image || 'placeholder.jpg'}" alt="${service.name}" class="w-full h-48 object-cover rounded">
+                    <h3 class="text-lg font-bold mt-2">${service.name}</h3>
+                    <p class="text-red-500 font-bold">${service.price} ج.م</p>
+                </div>
+            `).join('');
+        });
+
+        // إضافة دالة إضافة إلى السلة
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // إضافة المنتج إلى السلة
+            cart.push({
+                id: product.id,
+                name: product.name,
+                description: product.description,
+                price: product.price,
+                image: product.image
+            });
+            
+            // حفظ السلة في localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // تحديث عدد العناصر في السلة
+            updateCartCount();
+            
+            // عرض رسالة نجاح
+            showNotification(`تم إضافة ${product.name} إلى السلة`);
+        }
+
+        // تحديث عدد العناصر في السلة
+        function updateCartCount() {
+            const cartIcon = document.querySelector('.fa-shopping-cart');
+            if (!cartIcon) return;
+
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let badge = cartIcon.querySelector('.cart-count');
+            
+            if (cart.length === 0) {
+                if (badge) badge.style.display = 'none';
+                return;
+            }
+
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center';
+                cartIcon.style.position = 'relative';
+                cartIcon.appendChild(badge);
+            }
+
+            badge.style.display = 'flex';
+            badge.textContent = cart.length;
+        }
+
+        // تحديث عدد العناصر في السلة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+    </script>
+
+    <!-- إضافة JavaScript -->
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu-items');
+            mobileMenu.classList.toggle('show');
+        }
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.querySelector('.mobile-menu-items');
+            const menuButton = document.querySelector('.mobile-menu button');
+            
+            if (!event.target.closest('.mobile-menu') && mobileMenu.classList.contains('show')) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+    </script>
+    </body>
+
+</html>

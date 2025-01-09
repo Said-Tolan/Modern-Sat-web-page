@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>معلومات الدفع - ModernSat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="icon" href="img/Logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md relative">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6 header-container">
+            <div class="flex items-center space-x-4">
+                <a class="text-gray-600" href="#">
+                    <i class="fas fa-phone-alt"></i>
+                    +20 102 807 3345
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="text-gray-600" href="https://www.facebook.com/MOdernsat12/">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="cart.html" class="text-gray-600 hover:text-gray-900 relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                        style="display: none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md relative old-nav">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <div class="desktop-menu flex items-center space-x-4">
+                <a class="text-gray-800 font-bold text-xl" href="index.html">ModernSat</a>
+                <a class="text-gray-600 hover:text-red-500" href="index.html">الرئيسية</a>
+                <a class="text-gray-600 hover:text-red-500" href="products.html">المنتجات</a>
+                <a class="text-gray-600 hover:text-red-500" href="maintenance.html">الصيانة</a>
+                <a class="text-gray-600 hover:text-red-500 active" href="payment.html">معلومات الدفع</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navigation للموبايل -->
+    <nav class="bg-white shadow-md relative mobile-menu">
+        <div class="container mx-auto py-4 px-6">
+            <div class="flex items-center justify-between w-full">
+                <a class="text-gray-800 font-bold text-xl" href="index.html">ModernSat</a>
+                <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-900 p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-menu-items">
+                <a class="text-gray-600 hover:text-red-500" href="index.html">الرئيسية</a>
+                <a class="text-gray-600 hover:text-red-500" href="products.html">المنتجات</a>
+                <a class="text-gray-600 hover:text-red-500" href="maintenance.html">الصيانة</a>
+                <a class="text-gray-600 hover:text-red-500 active" href="payment.html">معلومات الدفع</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Information Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">معلومات الدفع</h1>
+            
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
+                <div class="space-y-6">
+                    <!-- طرق الدفع -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">طرق الدفع المتاحة</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-money-bill-wave text-green-500 text-2xl ml-4"></i>
+                                <div>
+                                    <h3 class="font-bold text-lg">الدفع عند الاستلام</h3>
+                                    <p class="text-gray-600">يمكنك الدفع نقداً عند استلام المنتج</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-mobile-alt text-red-500 text-2xl ml-4"></i>
+                                <div>
+                                    <h3 class="font-bold text-lg">Vodafone Cash</h3>
+                                    <p class="text-gray-600">يمكنك الدفع عن طريق محفظة Vodafone Cash على الرقم: 01028073345</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- معلومات التواصل -->
+                    <div class="border-t pt-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">معلومات التواصل</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-red-500 text-xl ml-4"></i>
+                                <div>
+                                    <h3 class="font-bold">رقم الهاتف:</h3>
+                                    <a href="tel:01028073345" class="text-red-500 hover:text-red-600">01028073345</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-red-500 text-xl ml-4"></i>
+                                <div>
+                                    <h3 class="font-bold">العنوان:</h3>
+                                    <p>الأسكندرية، مصر</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ملاحظات هامة -->
+                    <div class="border-t pt-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">ملاحظات هامة</h2>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li>يتم التوصيل خلال 24-48 ساعة من تأكيد الطلب</li>
+                            <li>للاستفسارات يمكنكم التواصل معنا على الرقم الموضح</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // تعريف دالة toggleMobileMenu في النطاق العالمي
+        window.toggleMobileMenu = function() {
+            const mobileMenu = document.querySelector('.mobile-menu-items');
+            mobileMenu.classList.toggle('show');
+        };
+        
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.querySelector('.mobile-menu-items');
+            const menuButton = document.querySelector('.mobile-menu button');
+            
+            if (!event.target.closest('.mobile-menu') && mobileMenu.classList.contains('show')) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+
+        // تحديث عدد العناصر في السلة
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                cartCount.textContent = cart.length;
+                cartCount.style.display = cart.length > 0 ? 'flex' : 'none';
+            }
+        });
+    </script>
+</body>
+</html> 
